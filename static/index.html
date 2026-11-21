@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="shell-type" content="mobile_tab" />
+  <title>ASHA VoiceCare — SwasthyaVaani</title>
+  <meta name="description" content="Hands-free AI voice field register PWA for ASHA community health workers." />
+  <meta name="theme-color" content="#0d5c5a" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="SwasthyaVaani" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'on-tertiary-container': '#4cd7f6',
+            'primary': '#004341',
+            'tertiary-fixed': '#acedff',
+            'secondary': '#006b5f',
+            'outline-variant': '#bec9c7',
+            'on-tertiary-fixed': '#001f26',
+            'background': '#f8f9ff',
+            'error': '#ba1a1a',
+            'surface-container-high': '#dce9ff',
+            'on-secondary': '#ffffff',
+            'primary-fixed': '#abefeb',
+            'on-secondary-container': '#006f64',
+            'surface-container-lowest': '#ffffff',
+            'on-tertiary-fixed-variant': '#004e5c',
+            'tertiary': '#00424e',
+            'inverse-surface': '#213145',
+            'on-primary-fixed': '#00201f',
+            'tertiary-fixed-dim': '#4cd7f6',
+            'surface-container-highest': '#d3e4fe',
+            'surface-tint': '#216866',
+            'secondary-fixed-dim': '#4fdbc8',
+            'surface-variant': '#d3e4fe',
+            'on-error-container': '#93000a',
+            'on-secondary-fixed': '#00201c',
+            'surface': '#f8f9ff',
+            'primary-container': '#0d5c5a',
+            'secondary-fixed': '#71f8e4',
+            'surface-dim': '#cbdbf5',
+            'tertiary-container': '#005b6b',
+            'on-surface-variant': '#3f4948',
+            'surface-bright': '#f8f9ff',
+            'inverse-on-surface': '#eaf1ff',
+            'outline': '#6f7978',
+            'on-primary-fixed-variant': '#00504e',
+            'on-background': '#0b1c30',
+            'surface-container': '#e5eeff',
+            'on-tertiary': '#ffffff',
+            'surface-container-low': '#eff4ff',
+            'on-primary-container': '#8fd2cf',
+            'primary-fixed-dim': '#8fd2cf',
+            'secondary-container': '#6df5e1',
+            'error-container': '#ffdad6',
+            'on-surface': '#0b1c30',
+            'on-error': '#ffffff',
+            'inverse-primary': '#8fd2cf',
+            'on-primary': '#ffffff',
+            'on-secondary-fixed-variant': '#005048'
+          },
+          borderRadius: {
+            'DEFAULT': '0.25rem',
+            'lg': '0.5rem',
+            'xl': '0.75rem',
+            'full': '9999px'
+          },
+          spacing: {
+            'space-sm': '0.5rem',
+            'margin-desktop': '2rem',
+            'space-xs': '0.25rem',
+            'space-lg': '1.5rem',
+            'margin-tablet': '1.5rem',
+            'margin': '1rem',
+            'space-xl': '2rem',
+            'gutter-desktop': '1.5rem',
+            'space-md': '1rem',
+            'gutter-tablet': '1.25rem',
+            'gutter': '1rem'
+          },
+          fontFamily: {
+            'body-md': ['Inter', 'sans-serif'],
+            'label-lg': ['Inter', 'sans-serif'],
+            'label-md': ['Inter', 'sans-serif'],
+            'body-lg': ['Inter', 'sans-serif'],
+            'display': ['Inter', 'sans-serif'],
+            'headline-sm': ['Inter', 'sans-serif'],
+            'headline-lg': ['Inter', 'sans-serif'],
+            'label-sm': ['Inter', 'sans-serif'],
+            'display-mobile': ['Inter', 'sans-serif'],
+            'body-sm': ['Inter', 'sans-serif'],
+            'headline-md': ['Inter', 'sans-serif']
+          },
+          fontSize: {
+            'body-md': ['14px', { 'lineHeight': '20px', 'fontWeight': '400' }],
+            'label-lg': ['14px', { 'lineHeight': '20px', 'letterSpacing': '0.01em', 'fontWeight': '600' }],
+            'label-md': ['12px', { 'lineHeight': '16px', 'letterSpacing': '0.02em', 'fontWeight': '600' }],
+            'body-lg': ['16px', { 'lineHeight': '24px', 'fontWeight': '400' }],
+            'display': ['32px', { 'lineHeight': '40px', 'letterSpacing': '-0.02em', 'fontWeight': '700' }],
+            'headline-sm': ['18px', { 'lineHeight': '24px', 'fontWeight': '600' }],
+            'headline-lg': ['24px', { 'lineHeight': '32px', 'letterSpacing': '-0.01em', 'fontWeight': '600' }],
+            'label-sm': ['11px', { 'lineHeight': '14px', 'letterSpacing': '0.03em', 'fontWeight': '500' }],
+            'display-mobile': ['26px', { 'lineHeight': '34px', 'letterSpacing': '-0.01em', 'fontWeight': '700' }],
+            'body-sm': ['12px', { 'lineHeight': '16px', 'fontWeight': '400' }],
+            'headline-md': ['20px', { 'lineHeight': '28px', 'fontWeight': '600' }]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    @layer base {
+      html, body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+      main > :first-child {
+        margin-top: 0 !important;
+      }
+      main > :last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    @keyframes soundwave {
+      0%, 100% { height: 8px; }
+      50% { height: 26px; }
+    }
+    .animated-bar {
+      animation: soundwave 1.2s ease-in-out infinite;
+    }
+    .bar-delay-1 { animation-delay: 0.1s; }
+    .bar-delay-2 { animation-delay: 0.25s; }
+    .bar-delay-3 { animation-delay: 0.4s; }
+    .bar-delay-4 { animation-delay: 0.2s; }
+    .bar-delay-5 { animation-delay: 0.35s; }
+    .bar-delay-6 { animation-delay: 0.15s; }
+    .bar-delay-7 { animation-delay: 0.3s; }
+
+    /* Keep header pill compact & matching Stitch secondary-fixed aesthetic */
+    #session-status-badge {
+      padding: 2px 8px !important;
+      font-size: 10px !important;
+      line-height: 1.25 !important;
+      gap: 4px !important;
+    }
+    #session-status-badge[data-status="idle"] {
+      background-color: #71f8e4 !important;
+      color: #00201c !important;
+    }
+    #session-status-badge[data-status="idle"] #session-status-dot {
+      width: 6px !important;
+      height: 6px !important;
+      background-color: #006b5f !important;
+    }
+    #session-status-badge[data-status="listening"] {
+      background-color: #71f8e4 !important;
+      color: #00201c !important;
+    }
+    #session-status-badge[data-status="speaking"] {
+      background-color: #acedff !important;
+      color: #001f26 !important;
+    }
+    #session-status-badge[data-status="error"] {
+      background-color: #ffdad6 !important;
+      color: #93000a !important;
+    }
+    .sv-voice-cta[aria-pressed="false"] {
+      background-color: #0d5c5a !important;
+      color: #ffffff !important;
+      min-height: 46px !important;
+      padding: 10px 16px !important;
+      border-radius: 0.75rem !important;
+      font-size: 13px !important;
+    }
+    .sv-voice-cta[aria-pressed="false"]:hover {
+      background-color: #004341 !important;
+    }
+    .sv-voice-cta[aria-pressed="true"] {
+      background-color: #ba1a1a !important;
+      color: #ffffff !important;
+      min-height: 46px !important;
+      padding: 10px 16px !important;
+      border-radius: 0.75rem !important;
+      font-size: 13px !important;
+    }
+  </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen antialiased">
+  <!-- Hidden LiveKit remote audio sink -->
+  <div id="audio-sink" data-swasthyavaani-audio-sink="true" aria-hidden="true" class="hidden"></div>
+
+  <header class="fixed top-0 left-0 right-0 w-full z-40 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="max-w-[430px] mx-auto h-16 px-margin flex items-center justify-between gap-space-sm">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary flex-shrink-0">
+          <span class="material-symbols-outlined text-[22px]">local_hospital</span>
+        </div>
+        <div class="flex flex-col min-w-0">
+          <div class="flex items-center gap-1.5">
+            <span class="font-headline-sm text-headline-sm text-primary tracking-tight truncate">ASHA VoiceCare</span>
+            <span
+              id="session-status-badge"
+              data-testid="session-status-badge"
+              data-status="idle"
+              role="status"
+              aria-live="polite"
+              class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[10px] font-label-sm leading-tight flex-shrink-0"
+            >
+              <span id="session-status-dot" class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              <span id="session-status-label">Online</span>
+            </span>
+          </div>
+          <span class="font-label-md text-label-md text-on-surface-variant truncate">Dashboard</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <button
+          type="button"
+          aria-label="Notifications"
+          onclick="openVoiceModalForDept('maternal')"
+          class="relative w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-on-surface rounded-full transition-colors"
+        >
+          <span class="material-symbols-outlined text-[24px]">notifications</span>
+          <span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface"></span>
+        </button>
+        <img
+          alt="Profile"
+          referrerpolicy="no-referrer"
+          class="w-8 h-8 rounded-full object-cover flex-shrink-0 ring-2 ring-primary/10 bg-surface-container-high"
+          src="https://lh3.googleusercontent.com/aida/ALJJyrAY4FCK3xezRNJU7qbkTkS81Jecfn-i3ajpTUQldpGaeKPFV6pqVywubkz00JX8cwtg8XwswoX6uuV7UYeh2hLop9KoDLwnkrCyfXy9ymuUtHm_i3sU0rVliUwOxONXZHNyUmqaM701nZWHUjskJwIeqXDBNylRKKJdt_Nh8mDrxlL06g3Av-NA42leis_zLsvVdsZBcHxGCLH05uIzKPQnMZ0HSBZClIvEmFCedHmQ-4mEcRDL1u8grA"
+        />
+        <button
+          type="button"
+          aria-label="Open navigation menu"
+          class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-on-surface active:scale-95 rounded-full transition-colors"
+          onclick="toggleNavMenu(true)"
+        >
+          <span class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex flex-col relative w-full max-w-[430px] mx-auto pt-16 bg-surface min-h-screen pb-safe">
+    <div class="flex flex-col w-full">
+      <!-- Top Greeting & Context Status -->
+      <section class="px-margin pt-4 pb-2">
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex flex-col min-w-0">
+            <div class="flex items-center gap-1.5">
+              <h1 class="font-headline-md text-headline-md text-on-surface tracking-tight truncate">Namaste, Sunita</h1>
+              <span class="text-lg">👋</span>
+            </div>
+            <div class="flex items-center gap-2 mt-1">
+              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+                <span class="material-symbols-outlined text-[14px] text-secondary">location_on</span>
+                Ward 4 • Shivajinagar
+              </span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+                <span class="material-symbols-outlined text-[14px]">groups</span>
+                42 Households
+              </span>
+            </div>
+          </div>
+          <!-- Shift Progress Dial Badge -->
+          <div class="flex flex-col items-center justify-center p-2 rounded-xl bg-surface-container-low shrink-0 text-center min-w-[56px]">
+            <span class="font-label-md text-label-md text-secondary leading-none">6/8</span>
+            <span class="font-label-sm text-[10px] text-on-surface-variant mt-0.5">Visits</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hidden Conditional Alerts (zero visual footprint unless triggered) -->
+      <div class="px-margin flex flex-col gap-2">
+        <div
+          id="offline-banner"
+          data-testid="offline-banner"
+          role="status"
+          class="hidden flex items-center gap-2 rounded-xl border border-[#fde68a] bg-[#fffbeb] px-3 py-2 text-xs font-medium text-[#92400e]"
+        >
+          <span class="material-symbols-outlined text-[16px] text-[#d97706]">wifi_off</span>
+          <span>Offline Mode — Live voice requires internet.</span>
+        </div>
+
+        <button
+          id="unlock-audio-btn"
+          type="button"
+          data-testid="unlock-audio-btn"
+          class="hidden w-full py-2.5 px-3 rounded-xl border border-[#fde68a] bg-[#fffbeb] text-xs font-semibold text-[#92400e] flex items-center justify-center gap-2"
+        >
+          <span class="material-symbols-outlined text-[16px]">volume_up</span>
+          <span>Tap to enable agent audio playback</span>
+        </button>
+
+        <div
+          id="error-banner"
+          data-testid="error-banner"
+          role="alert"
+          class="hidden flex items-start justify-between gap-2 rounded-xl border border-error/25 bg-error-container px-3 py-2.5 text-xs text-on-error-container"
+        >
+          <p id="error-banner-text" class="leading-relaxed"></p>
+          <button
+            id="error-dismiss-btn"
+            type="button"
+            aria-label="Dismiss error"
+            class="w-6 h-6 rounded-full flex items-center justify-center hover:bg-error/10 shrink-0"
+          >
+            <span class="material-symbols-outlined text-[16px]">close</span>
+          </button>
+        </div>
+
+        <!-- Urgent PHC Referral Banner (Hidden by default until phc_referral_needed === true) -->
+        <section
+          id="phc-referral-banner"
+          data-testid="phc-referral-banner"
+          role="alert"
+          aria-live="assertive"
+          class="hidden rounded-2xl border-2 border-[#93000a] bg-error p-4 text-on-error shadow-md"
+        >
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[22px] text-white">warning</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h2 class="font-headline-sm text-[15px] font-bold text-white">Urgent PHC Referral Required</h2>
+              <p class="mt-1 text-xs text-error-container leading-relaxed">
+                Danger signs detected. Refer beneficiary immediately to the Primary Health Centre (PHC).
+              </p>
+              <ul id="danger-signs-list" data-testid="danger-signs-list" class="hidden mt-2 space-y-1 border-t border-white/25 pt-2 text-xs font-semibold text-white"></ul>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Department Hub Main Stack -->
+      <section class="px-margin mt-4 flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Active Healthcare Hubs</h2>
+          <span class="font-label-sm text-label-sm text-on-surface-variant">Ward 4 Live Feed</span>
+        </div>
+
+        <!-- Card 1: Maternal & Child Care -->
+        <article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm flex flex-col transition-all active:scale-[0.99] cursor-pointer" data-dept="maternal">
+          <div class="relative w-full h-44 overflow-hidden bg-gradient-to-br from-surface-dim to-inverse-surface">
+            <img
+              alt="Maternal &amp; Child Care Consultation"
+              referrerpolicy="no-referrer"
+              class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ5HPBlX1GLGDIWdpCUfc3CeelcmSIM1Ug3Ix00yoP8RCB_KrvaACdL8CXsVAMyas8RdBvclT9cGx7ehsjUAq2UkiKXP2ua7_K-0F117xXfGENXCsmYfsIyhRfvqL5P_wQOO0RSD9QLOlk_zqj-iJlaT4kU0C0IOPCtCrTCsuHEx4lVtbPWELtiIEjaAQO-v8t9yk2tmVydwIiHU3JrSA-Zf_Yncx_MnDe1yWasUo"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/85 via-inverse-surface/25 to-transparent"></div>
+            <!-- Priority Care Badge -->
+            <div class="absolute top-3 left-3">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm font-semibold shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                Priority Care • 24 Active Mothers
+              </span>
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 text-on-primary">
+              <h3 class="font-headline-sm text-headline-sm font-bold tracking-tight text-white drop-shadow-sm">Maternal &amp; Child Care</h3>
+            </div>
+          </div>
+          <div class="p-4 flex flex-col gap-3">
+            <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Manage high-risk pregnancies, trimester ANC schedules, postnatal care, and infant health.
+            </p>
+            <!-- Metrics Pills -->
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md">
+                <span class="material-symbols-outlined text-[15px] text-secondary">event_upcoming</span>
+                18 Due Checkups
+              </span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-md text-label-md font-semibold">
+                <span class="material-symbols-outlined text-[15px]">warning</span>
+                6 High Risk (HRP)
+              </span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md">
+                <span class="material-symbols-outlined text-[15px]">task_alt</span>
+                92 ANC Done
+              </span>
+            </div>
+            <!-- Card Footer Action -->
+            <div class="pt-1 flex items-center justify-between">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">Last synced 14m ago</span>
+              <button class="dept-btn inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md font-semibold shadow hover:bg-primary active:scale-95 transition-all" data-dept="maternal" type="button">
+                <span>Open Department</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: Immunization Tracking -->
+        <article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm flex flex-col transition-all active:scale-[0.99] cursor-pointer" data-dept="immunization">
+          <div class="relative w-full h-44 overflow-hidden bg-gradient-to-br from-surface-dim to-inverse-surface">
+            <img
+              alt="Immunization Vaccination Program"
+              referrerpolicy="no-referrer"
+              class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDL4hVdAGYDXfr-RyY1sUCl8mGMtlo6OthhAZpYvjqSWynMAcmcKao4vfKH48jqLbwSaRH9geLnEwT4R7svaF-cqdU4EFQyAAho0doLw2HH9Lu4FZH5YuGbZ6hpaedBV7UnSgF9EKvrfzp364J6J_V8WV9zU4w2AgJi7Orq-lD2JlM9YUQ6qnsTELE39gXtQH33PySbsudEfrHGQ6qT1PRfPvzAkbQH1UCWnsMtaA0"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/85 via-inverse-surface/25 to-transparent"></div>
+            <!-- Camp Today Badge -->
+            <div class="absolute top-3 left-3">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold shadow-sm">
+                <span class="material-symbols-outlined text-[15px]">pin_drop</span>
+                Camp Today • Ward 4 Anganwadi
+              </span>
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 text-on-primary">
+              <h3 class="font-headline-sm text-headline-sm font-bold tracking-tight text-white drop-shadow-sm">Immunization Tracking</h3>
+            </div>
+          </div>
+          <div class="p-4 flex flex-col gap-3">
+            <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Track pentavalent, polio drops, measles cohorts, and overdue infant vaccination records.
+            </p>
+            <!-- Metrics Pills -->
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md">
+                <span class="material-symbols-outlined text-[15px] text-secondary">today</span>
+                11 Due Today
+              </span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-md text-label-md font-semibold">
+                <span class="material-symbols-outlined text-[15px]">timer_off</span>
+                2 Overdue
+              </span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md">
+                <span class="material-symbols-outlined text-[15px]">verified</span>
+                88% Coverage
+              </span>
+            </div>
+            <!-- Card Footer Action -->
+            <div class="pt-1 flex items-center justify-between">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">Camp ends at 4:30 PM</span>
+              <button class="dept-btn inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md font-semibold shadow hover:bg-primary active:scale-95 transition-all" data-dept="immunization" type="button">
+                <span>Open Immunization</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: Medicine Kit & Inventory -->
+        <article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm flex flex-col transition-all active:scale-[0.99] cursor-pointer" data-dept="supplies">
+          <div class="relative w-full h-44 overflow-hidden bg-gradient-to-br from-surface-dim to-inverse-surface">
+            <img
+              alt="Medicine Kit &amp; Medical Supplies"
+              referrerpolicy="no-referrer"
+              class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqKD1avKMO4wQJZw23w1fcT4fiO7KHGV1uurDhjvN3XeEpgA1IX_3NDDCeDso-P5DpltQReFrkCX5kSOAZIapaj14ZRbdApCKh9SFj6xFSm0bYlPvgivLTge38RpplFYNI2bBMDNFvKfvqV2a2kfchvkvxEUDYhr7NZjSjIECEJvZRCe7YeZwnuNe95RoPqHehxnPyFtN9ZhO-IMEsM-BiliY9oe4Rt_E1eQ1aaG4"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/85 via-inverse-surface/25 to-transparent"></div>
+            <!-- Kit Restock Badge -->
+            <div class="absolute top-3 left-3">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-error"></span>
+                Kit Restock • 2 Items Low
+              </span>
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 text-on-primary">
+              <h3 class="font-headline-sm text-headline-sm font-bold tracking-tight text-white drop-shadow-sm">Medicine Kit &amp; Inventory</h3>
+            </div>
+          </div>
+          <div class="p-4 flex flex-col gap-3">
+            <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Monitor IFA tablets, ORS packets, zinc, paracetamol, diagnostic strips, and BP kits.
+            </p>
+            <!-- Metrics Pills -->
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-md text-label-md">
+                <span class="material-symbols-outlined text-[15px]">inventory_2</span>
+                IFA: Low (18 left)
+              </span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md">
+                <span class="material-symbols-outlined text-[15px] text-secondary">medication</span>
+                ORS: 4 packs
+              </span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md">
+                <span class="material-symbols-outlined text-[15px]">check_circle</span>
+                Kit #4 Verified
+              </span>
+            </div>
+            <!-- Card Footer Action -->
+            <div class="pt-1 flex items-center justify-between">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">PHC Refill: Tomorrow</span>
+              <button class="dept-btn inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md font-semibold shadow hover:bg-primary active:scale-95 transition-all" data-dept="supplies" type="button">
+                <span>Manage Supplies</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Community Micro-Prompt Banner -->
+      <section class="px-margin mt-4 pb-6">
+        <div class="p-4 rounded-2xl bg-surface-container flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-secondary text-on-secondary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[20px]">headset_mic</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="font-label-md text-label-md text-on-surface">Community ANM On Call</span>
+              <span class="font-body-sm text-body-sm text-on-surface-variant">Sister Lakshmi available for tele-advice</span>
+            </div>
+          </div>
+          <a class="w-9 h-9 rounded-full bg-surface-container-lowest text-primary flex items-center justify-center shadow-sm shrink-0 active:scale-90 transition-transform" href="tel:108">
+            <span class="material-symbols-outlined text-[18px]">call</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Top Right Navigation Drawer Modal -->
+  <div id="nav-menu-drawer" class="fixed inset-0 z-50 transition-opacity duration-300 opacity-0 pointer-events-none flex justify-end">
+    <!-- Backdrop -->
+    <div id="nav-menu-backdrop" class="absolute inset-0 bg-[#0b1c30]/40 backdrop-blur-sm transition-opacity" onclick="toggleNavMenu(false)"></div>
+
+    <!-- Slide-out Drawer Content Panel -->
+    <div id="nav-menu-panel" class="relative w-full max-w-xs h-full bg-surface-container-lowest shadow-2xl flex flex-col justify-between transition-transform duration-300 ease-out transform translate-x-full border-l border-surface-container z-10 pt-safe pb-safe overflow-y-auto">
+      <div>
+        <!-- Drawer Header with User Info & Close Button -->
+        <div class="p-5 pb-4 border-b border-surface-container flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <img
+              alt="Sunita Profile"
+              referrerpolicy="no-referrer"
+              class="w-10 h-10 rounded-full object-cover ring-2 ring-primary/20 bg-surface-container-high"
+              src="https://lh3.googleusercontent.com/aida/ALJJyrAY4FCK3xezRNJU7qbkTkS81Jecfn-i3ajpTUQldpGaeKPFV6pqVywubkz00JX8cwtg8XwswoX6uuV7UYeh2hLop9KoDLwnkrCyfXy9ymuUtHm_i3sU0rVliUwOxONXZHNyUmqaM701nZWHUjskJwIeqXDBNylRKKJdt_Nh8mDrxlL06g3Av-NA42leis_zLsvVdsZBcHxGCLH05uIzKPQnMZ0HSBZClIvEmFCedHmQ-4mEcRDL1u8grA"
+            />
+            <div class="flex flex-col min-w-0">
+              <span class="font-headline-sm text-[15px] font-bold text-on-surface truncate">Sunita Devi</span>
+              <span class="font-label-sm text-[11px] text-secondary font-semibold">ASHA Worker • Ward 4</span>
+            </div>
+          </div>
+          <button type="button" aria-label="Close navigation menu" onclick="toggleNavMenu(false)" class="w-8 h-8 rounded-full bg-surface-container-high/60 hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-on-surface active:scale-90 transition-all">
+            <span class="material-symbols-outlined text-[18px]">close</span>
+          </button>
+        </div>
+
+        <!-- Navigation Menu Items List -->
+        <nav class="p-3 flex flex-col gap-1.5">
+          <!-- 1. Analytics & Reports -->
+          <a href="#" onclick="event.preventDefault(); toggleNavMenu(false); openVoiceModalForDept('maternal');" class="flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-surface-container text-on-surface transition-colors active:scale-95 group">
+            <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+              <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+            </div>
+            <div class="flex flex-col flex-1">
+              <span class="font-label-lg text-body-md font-semibold text-on-surface">Analytics &amp; Reports</span>
+              <span class="font-body-sm text-[11px] text-on-surface-variant">ANC, immunization &amp; survey data</span>
+            </div>
+            <span class="material-symbols-outlined text-[16px] text-on-surface-variant">chevron_right</span>
+          </a>
+
+          <!-- 2. National Health Programmes -->
+          <a href="#" onclick="event.preventDefault(); toggleNavMenu(false);" class="flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-surface-container text-on-surface transition-colors active:scale-95 group">
+            <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+              <span class="material-symbols-outlined text-[20px]">health_and_safety</span>
+            </div>
+            <div class="flex flex-col flex-1">
+              <span class="font-label-lg text-body-md font-semibold text-on-surface">National Health Programmes</span>
+              <span class="font-body-sm text-[11px] text-on-surface-variant">NHM, RCH, PM-JAY &amp; schemes</span>
+            </div>
+            <span class="material-symbols-outlined text-[16px] text-on-surface-variant">chevron_right</span>
+          </a>
+
+          <!-- 3. Settings -->
+          <a href="#" onclick="event.preventDefault(); toggleNavMenu(false);" class="flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-surface-container text-on-surface transition-colors active:scale-95 group">
+            <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant group-hover:bg-surface-container-high transition-colors">
+              <span class="material-symbols-outlined text-[20px]">settings</span>
+            </div>
+            <div class="flex flex-col flex-1">
+              <span class="font-label-lg text-body-md font-semibold text-on-surface">Settings</span>
+              <span class="font-body-sm text-[11px] text-on-surface-variant">Voice dialect, sync &amp; display</span>
+            </div>
+            <span class="material-symbols-outlined text-[16px] text-on-surface-variant">chevron_right</span>
+          </a>
+
+          <!-- 4. Help & Support -->
+          <a href="#" onclick="event.preventDefault(); toggleNavMenu(false);" class="flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-surface-container text-on-surface transition-colors active:scale-95 group">
+            <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant group-hover:bg-surface-container-high transition-colors">
+              <span class="material-symbols-outlined text-[20px]">help</span>
+            </div>
+            <div class="flex flex-col flex-1">
+              <span class="font-label-lg text-body-md font-semibold text-on-surface">Help &amp; Support</span>
+              <span class="font-body-sm text-[11px] text-on-surface-variant">ANM hotline &amp; voice guides</span>
+            </div>
+            <span class="material-symbols-outlined text-[16px] text-on-surface-variant">chevron_right</span>
+          </a>
+        </nav>
+
+        <!-- Subtle Collapsible Demo Patch Simulator inside Drawer (for live demos) -->
+        <div id="demo-test-strip" data-testid="demo-test-strip" class="mx-3 mt-1 p-3 rounded-xl bg-surface-container-low border border-surface-container">
+          <div class="flex items-center justify-between gap-2">
+            <button id="demo-strip-toggle" type="button" aria-expanded="true" class="flex items-center gap-1 text-[11px] font-label-md font-semibold text-primary">
+              <span id="demo-chevron-up" class="material-symbols-outlined text-[16px]">expand_less</span>
+              <span id="demo-chevron-down" class="hidden material-symbols-outlined text-[16px]">expand_more</span>
+              <span>Test UI Patches</span>
+            </button>
+            <button id="reset-record-btn" type="button" class="text-[11px] font-semibold text-on-surface-variant hover:text-on-surface">
+              Reset
+            </button>
+          </div>
+          <div id="demo-strip-body" class="mt-2 space-y-2">
+            <div class="grid grid-cols-2 gap-1.5">
+              <button type="button" data-sim-type="normal" class="py-1.5 px-2 rounded-lg bg-surface-container-lowest border border-surface-container text-[11px] font-semibold text-on-surface">Normal</button>
+              <button type="button" data-sim-type="correction" class="py-1.5 px-2 rounded-lg bg-surface-container-lowest border border-surface-container text-[11px] font-semibold text-on-surface">Correction</button>
+              <button type="button" data-sim-type="danger" class="py-1.5 px-2 rounded-lg bg-error-container text-[11px] font-semibold text-on-error-container">Danger</button>
+              <button type="button" data-sim-type="confirm" class="py-1.5 px-2 rounded-lg bg-secondary-fixed text-[11px] font-semibold text-on-secondary-fixed">Confirm</button>
+            </div>
+            <div id="patch-log-wrapper" class="hidden pt-1 border-t border-surface-container">
+              <button id="patch-log-toggle" type="button" class="text-[10px] font-semibold text-primary">View incoming JSON patches (0)</button>
+              <div id="patch-log-list" class="hidden mt-1.5 max-h-28 overflow-y-auto rounded-lg bg-inverse-surface p-2 font-mono text-[10px] text-inverse-on-surface"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drawer Footer: PWA Install + 5. Logout Action -->
+      <div class="p-4 border-t border-surface-container flex flex-col gap-2">
+        <button id="pwa-install-btn" type="button" class="hidden w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md font-semibold">
+          <span class="material-symbols-outlined text-[18px]">download</span>
+          <span>Install App</span>
+        </button>
+        <button id="pwa-ios-install-btn" type="button" class="hidden w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-surface-container-high text-primary font-label-md text-label-md font-semibold">
+          <span class="material-symbols-outlined text-[18px]">ios_share</span>
+          <span>Add to Home Screen</span>
+        </button>
+        <button type="button" onclick="toggleNavMenu(false)" class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-error-container text-on-error-container font-label-md text-label-md font-semibold hover:bg-error hover:text-on-error active:scale-95 transition-all">
+          <span class="material-symbols-outlined text-[18px]">logout</span>
+          <span>Logout</span>
+        </button>
+        <div class="mt-1 text-center">
+          <span class="text-[10px] font-label-sm text-on-surface-variant">ASHA VoiceCare v2.4 • MoHFW</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tap to Speak Voice Bottom Sheet Modal -->
+  <div class="fixed inset-0 z-50 flex items-end justify-center transition-opacity duration-300 opacity-0 pointer-events-none" id="voice-department-modal">
+    <div class="absolute inset-0 bg-[#0b1c30]/40 backdrop-blur-sm transition-opacity" id="voice-modal-backdrop" onclick="closeVoiceModal()"></div>
+    <div class="relative w-full max-w-lg bg-gradient-to-b from-[#f4f9fc] via-[#f7fbfe] to-[#eaf3f8] rounded-t-[36px] shadow-2xl overflow-hidden transition-transform duration-300 transform border-t border-white/60 pb-safe pointer-events-auto translate-y-full" id="voice-modal-sheet">
+      <!-- Dismiss Drag Handle & Close Button -->
+      <div class="relative w-full flex items-center justify-between px-6 pt-3 pb-2">
+        <div class="w-12 h-1.5 rounded-full bg-outline-variant/60 mx-auto cursor-pointer" onclick="closeVoiceModal()"></div>
+        <button type="button" aria-label="Close modal" class="absolute right-4 top-3 w-8 h-8 rounded-full bg-surface-container-high/60 hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-on-surface active:scale-90 transition-all" onclick="closeVoiceModal()">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <!-- STEP 1: Tap to Speak View -->
+      <div id="voice-step-record" class="flex flex-col items-center px-6 pt-2 pb-8 text-center select-none">
+        <!-- Top Department / ASHA Voice Badge Pill -->
+        <div class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-surface-container mb-3">
+          <span class="text-xs text-[#006b5f]">🌱</span>
+          <span class="font-label-sm text-[12px] font-semibold text-[#004341] tracking-normal" id="modal-badge-dept">🌱 Maternal &amp; Child Care • ASHA Voice</span>
+        </div>
+
+        <h2 class="font-display text-[30px] font-bold text-[#0b1c30] tracking-tight leading-tight mb-1" id="modal-title-text">Tap to Speak</h2>
+        <p class="font-body-md text-[13px] leading-relaxed text-[#3f4948] max-w-xs mb-3" id="modal-subtitle-text">Speak naturally in Telugu, Hindi, or English. Your notes will be captured seamlessly.</p>
+
+        <!-- Beneficiary Selector bound to static/app.js -->
+        <div class="w-full max-w-xs mb-2 text-left">
+          <div class="flex items-center justify-between mb-1">
+            <label for="beneficiary-select" class="text-[11px] font-label-sm font-semibold text-on-surface-variant">Beneficiary</label>
+            <span id="beneficiary-locked-hint" class="hidden text-[10px] text-secondary font-semibold">Locked during call</span>
+          </div>
+          <select id="beneficiary-select" data-testid="beneficiary-selector" class="w-full h-10 rounded-xl border border-surface-container-highest bg-white px-3 text-xs font-semibold text-on-surface focus:border-primary-container focus:outline-none"></select>
+        </div>
+
+        <!-- Center Voice Pulse Mic Section with Multi-layer Ripple Rings -->
+        <div class="relative flex items-center justify-center w-56 h-56 my-1">
+          <div class="absolute bottom-4 left-0 right-0 h-28 opacity-35 pointer-events-none bg-gradient-to-t from-[#cbeae6] to-transparent rounded-full filter blur-xl"></div>
+          <div class="absolute w-52 h-52 rounded-full bg-[#abefeb]/35 transition-all duration-700 ease-out" id="wave-ring-3"></div>
+          <div class="absolute w-40 h-40 rounded-full bg-[#71f8e4]/45 transition-all duration-500 ease-out" id="wave-ring-2"></div>
+          <div class="absolute w-28 h-28 rounded-full bg-[#4fdbc8]/50 transition-all duration-300 ease-out" id="wave-ring-1"></div>
+          <button type="button" class="relative z-10 w-24 h-24 rounded-full bg-[#0d5c5a] text-white flex flex-col items-center justify-center shadow-[0_8px_24px_rgba(13,92,90,0.35)] active:scale-95 transition-all hover:bg-[#004341]" id="voice-record-btn" onclick="toggleListening()">
+            <span class="material-symbols-outlined text-[38px] leading-none" id="voice-mic-icon">mic</span>
+            <span class="text-[11px] font-label-sm font-semibold tracking-wide mt-1" id="voice-btn-sublabel">Tap to Talk</span>
+          </button>
+        </div>
+
+        <!-- Live Animated Sound Bars underneath Mic Circle -->
+        <div class="flex items-center justify-center gap-1.5 h-7 mt-1 mb-3">
+          <div class="waveform-bar animated-bar bar-delay-1 w-1.5 rounded-full bg-[#006b5f]"></div>
+          <div class="waveform-bar animated-bar bar-delay-2 w-1.5 rounded-full bg-[#006b5f]"></div>
+          <div class="waveform-bar animated-bar bar-delay-3 w-1.5 rounded-full bg-[#006b5f]"></div>
+          <div class="waveform-bar animated-bar bar-delay-4 w-1.5 rounded-full bg-[#006b5f]"></div>
+          <div class="waveform-bar animated-bar bar-delay-5 w-1.5 rounded-full bg-[#006b5f]"></div>
+          <div class="waveform-bar animated-bar bar-delay-6 w-1.5 rounded-full bg-[#006b5f]"></div>
+          <div class="waveform-bar animated-bar bar-delay-7 w-1.5 rounded-full bg-[#006b5f]"></div>
+        </div>
+
+        <!-- Ready Status Badge Pill -->
+        <div class="mb-2">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e5eeff]/95 text-[#0b1c30] font-label-md text-[13px] font-semibold shadow-sm border border-[#d3e4fe]/60">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#006b5f] transition-colors" id="status-indicator-dot"></span>
+            <span id="modal-status-text">Ready • Maternal &amp; ANC Dictation</span>
+          </span>
+        </div>
+
+        <p class="font-body-sm text-[12px] text-[#3f4948]/85" id="modal-sub-badge-text">Auto-detecting as you speak • Telugu, Hindi, English</p>
+
+        <!-- Action Buttons + LiveKit Session Toggle -->
+        <div class="flex items-center gap-3 w-full mt-4">
+          <button type="button" class="flex-1 py-3 px-4 rounded-xl bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold hover:bg-surface-container active:scale-95 transition-all flex items-center justify-center gap-1.5" onclick="closeVoiceModal()">
+            <span class="material-symbols-outlined text-[18px]">keyboard</span>
+            <span>Type Notes</span>
+          </button>
+          <button type="button" class="flex-1 py-3 px-4 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md font-semibold hover:bg-primary active:scale-95 transition-all shadow flex items-center justify-center gap-1.5" onclick="simulateProcessing()">
+            <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+            <span>Process Voice</span>
+          </button>
+        </div>
+
+        <!-- LiveKit WebRTC Session Control bound directly by static/app.js -->
+        <button
+          id="session-toggle-btn"
+          type="button"
+          data-testid="session-toggle-btn"
+          aria-pressed="false"
+          class="sv-voice-cta w-full mt-2.5 flex items-center justify-center gap-2 rounded-xl bg-primary-container text-on-primary font-label-md font-semibold shadow active:scale-95 transition-all"
+        >
+          <span id="cta-icon-mic" class="material-symbols-outlined text-[18px]">mic</span>
+          <span id="cta-icon-spinner" class="hidden material-symbols-outlined text-[18px] animate-spin">progress_activity</span>
+          <span id="cta-icon-micoff" class="hidden material-symbols-outlined text-[18px]">mic_off</span>
+          <span id="cta-icon-volume" class="hidden material-symbols-outlined text-[18px]">graphic_eq</span>
+          <span id="cta-label">Start Voice Visit</span>
+        </button>
+      </div>
+
+      <!-- STEP 2: Processing AI State (Hidden by default) -->
+      <div id="voice-step-processing" class="hidden flex-col items-center px-6 py-12 text-center select-none">
+        <div class="relative flex items-center justify-center w-24 h-24 mb-6">
+          <div class="absolute w-24 h-24 rounded-full border-4 border-primary/20 border-t-primary animate-spin"></div>
+          <div class="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center text-primary shadow-sm">
+            <span class="material-symbols-outlined text-[30px] animate-pulse">neurology</span>
+          </div>
+        </div>
+        <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mb-2">Extracting Clinical Vitals...</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-xs mb-4">Transcribing audio &amp; structuring beneficiary record with Anmol AI engine.</p>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+          <span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+          <span>Detected Telugu + Hindi Audio Mix</span>
+        </div>
+      </div>
+
+      <!-- STEP 3: Beneficiary & Visit Summary Review Card (wired to static/app.js live fields) -->
+      <div id="voice-step-review" class="hidden flex-col px-5 pt-1 pb-6 text-left max-h-[85vh] overflow-y-auto">
+        <!-- Header with pill and extraction confidence -->
+        <div class="flex items-center justify-between mb-3">
+          <div id="confirmed-badge" data-testid="confirmed-badge" class="hidden inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold shadow-sm">
+            <span class="material-symbols-outlined text-[15px]">task_alt</span>
+            <span>Confirmed &amp; Saved</span>
+          </div>
+          <div id="draft-status-text" data-testid="draft-status-text" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold shadow-sm">
+            <span class="material-symbols-outlined text-[15px]">task_alt</span>
+            <span>AI Clinical Extraction Complete</span>
+          </div>
+          <span class="font-label-sm text-[11px] text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded-full">98.4% Confidence</span>
+        </div>
+
+        <!-- Original Transcribed Voice Note Accordion -->
+        <div class="p-3 rounded-xl bg-surface-container-lowest border border-surface-container shadow-sm mb-3">
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-1.5 text-secondary text-[12px] font-semibold font-label-md">
+              <span class="material-symbols-outlined text-[16px]">record_voice_over</span>
+              <span>Raw Voice Note (Ward 4 Dictation)</span>
+            </div>
+            <span class="font-label-sm text-[11px] text-on-surface-variant">0:24 duration</span>
+          </div>
+          <p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed italic bg-surface-container-low p-2 rounded-lg border border-surface-container">
+            “Completed ANC visit for Sunita Devi (ASHA-104, Ward 4). Blood pressure 118/76, maternal weight 54.5kg, gestational age 26 weeks. Distributed 30 IFA tablets. No danger signs reported. Next checkup scheduled for 19 Dec.”
+          </p>
+          <!-- Audio readback bar -->
+          <div class="mt-2 pt-2 border-t border-surface-container flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <button type="button" id="play-voice-btn" class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center hover:bg-primary active:scale-95 transition-all" onclick="toggleAudioPlayback()">
+                <span class="material-symbols-outlined text-[16px]" id="play-icon">play_arrow</span>
+              </button>
+              <span class="font-label-sm text-[11px] text-on-surface font-medium" id="play-status-label">Spoken Read-back preview (Telugu &amp; Hindi)</span>
+            </div>
+            <span class="text-[11px] font-label-sm text-secondary font-semibold">1.0x</span>
+          </div>
+        </div>
+
+        <!-- Structured Beneficiary & Visit Summary Card -->
+        <div data-testid="visit-card" class="p-4 rounded-2xl bg-surface-container-lowest border border-[#d3e4fe]/80 shadow-sm flex flex-col gap-3 mb-4">
+          <!-- Beneficiary Identity Header -->
+          <div id="field-beneficiary" data-testid="field-beneficiary" class="flex items-start justify-between pb-2.5 border-b border-surface-container rounded-lg transition-colors">
+            <div class="flex items-center gap-2.5">
+              <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shrink-0">
+                SD
+              </div>
+              <div class="flex flex-col">
+                <div class="flex items-center gap-1.5">
+                  <h4 id="val-beneficiary-name" class="font-headline-sm text-[16px] font-bold text-on-surface">Sunita Devi</h4>
+                  <span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[10px] font-label-sm font-semibold">High-Risk (HRP)</span>
+                </div>
+                <span class="font-body-sm text-[11px] text-on-surface-variant">
+                  ID: <span id="val-beneficiary-id">ASHA-104</span> • Ward 4
+                </span>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded-lg bg-surface-container-high text-primary font-label-sm text-[11px] font-semibold">Ward 4</span>
+          </div>
+
+          <!-- Extracted Clinical Vitals Grid -->
+          <div>
+            <span class="font-label-sm text-[11px] font-semibold text-secondary uppercase tracking-wider block mb-1.5">Extracted Clinical Vitals</span>
+            <div class="grid grid-cols-2 gap-2">
+              <div id="field-visit_type" data-testid="field-visit_type" class="p-2.5 rounded-xl bg-surface-container-low flex flex-col transition-colors">
+                <span class="text-[11px] font-label-sm text-on-surface-variant flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[13px] text-primary">monitor_heart</span> Visit Type
+                </span>
+                <span id="val-visit-type" class="font-bold text-[14px] text-on-surface mt-0.5">ANC Checkup</span>
+              </div>
+              <div id="field-weight_kg" data-testid="field-weight_kg" class="p-2.5 rounded-xl bg-surface-container-low flex flex-col transition-colors">
+                <span class="text-[11px] font-label-sm text-on-surface-variant flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[13px] text-secondary">scale</span> Maternal Weight
+                </span>
+                <span id="val-weight-kg" class="font-bold text-[15px] text-on-surface mt-0.5 tabular-nums">—</span>
+              </div>
+              <div id="field-vaccinations_due" data-testid="field-vaccinations_due" class="col-span-2 p-2.5 rounded-xl bg-surface-container-low flex flex-col transition-colors">
+                <span class="text-[11px] font-label-sm text-on-surface-variant flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[13px] text-secondary">vaccines</span> Vaccinations Due
+                </span>
+                <div id="val-vaccinations-due" class="font-semibold text-[13px] text-on-surface mt-0.5">None recorded</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Supplies & Dispensing -->
+          <div class="p-2.5 rounded-xl bg-secondary-fixed/30 border border-secondary/20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-secondary">medication</span>
+              <div class="flex flex-col">
+                <span class="text-[12px] font-label-md font-semibold text-on-surface">30 IFA Tablets Dispensed</span>
+                <span class="text-[10px] text-on-surface-variant font-body-sm">Drawn from Kit #4 • Stock automatically deducted</span>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+          </div>
+
+          <!-- Next Follow-up -->
+          <div id="field-next_visit_date" data-testid="field-next_visit_date" class="flex items-center justify-between p-2.5 rounded-xl bg-surface-container-high/60 transition-colors">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-primary">event</span>
+              <span class="font-label-md text-[12px] text-on-surface font-semibold">Next Scheduled Checkup</span>
+            </div>
+            <span id="val-next-visit-date" class="font-label-sm text-[12px] font-bold text-primary tabular-nums">—</span>
+          </div>
+        </div>
+
+        <!-- Action CTA Buttons -->
+        <div class="flex flex-col gap-2 w-full">
+          <button type="button" id="btn-confirm-record" class="w-full py-3.5 px-4 rounded-xl bg-primary-container hover:bg-primary text-on-primary font-headline-sm text-[15px] font-semibold shadow-md active:scale-95 transition-all flex items-center justify-center gap-2" onclick="saveAndSyncRecord()">
+            <span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+            <span>Update Patient Record</span>
+          </button>
+          <div class="flex items-center gap-2 w-full">
+            <button type="button" class="flex-1 py-2.5 px-3 rounded-xl bg-surface-container-high text-on-surface font-label-md text-label-md font-medium hover:bg-surface-container active:scale-95 transition-all flex items-center justify-center gap-1.5" onclick="reRecordVoice()">
+              <span class="material-symbols-outlined text-[16px]">mic</span>
+              <span>Edit with Voice</span>
+            </button>
+            <button type="button" class="py-2.5 px-3 rounded-xl bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high active:scale-95 transition-all flex items-center justify-center gap-1" onclick="resetVoiceModal()">
+              <span class="material-symbols-outlined text-[16px]">restart_alt</span>
+              <span>Discard</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Notification Toast -->
+  <div id="sync-success-toast" class="hidden fixed bottom-6 left-4 right-4 max-w-md mx-auto z-50 p-4 rounded-2xl bg-[#004341] text-white shadow-2xl flex items-center justify-between gap-3 transform transition-all duration-300">
+    <div class="flex items-center gap-2.5">
+      <div class="w-9 h-9 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-[20px]">verified</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-label-md text-[13px] font-bold leading-tight">Record Updated &amp; Synced!</span>
+        <span class="font-body-sm text-[11px] text-[#8fd2cf] leading-tight mt-0.5">Beneficiary record synced to RCH Registry &amp; Ward 4</span>
+      </div>
+    </div>
+    <button type="button" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white active:scale-90" onclick="dismissToast()">
+      <span class="material-symbols-outlined text-[16px]">close</span>
+    </button>
+  </div>
+
+  <!-- iOS Safari Add to Home Screen Modal -->
+  <div id="ios-install-modal" role="dialog" aria-modal="true" aria-labelledby="ios-install-title" class="hidden fixed inset-0 z-50 flex items-end justify-center bg-[#0b1c30]/40 p-4 backdrop-blur-sm sm:items-center">
+    <div class="w-full max-w-sm rounded-2xl bg-surface-container-lowest p-5 shadow-2xl border border-surface-container">
+      <div class="flex items-start justify-between gap-3">
+        <h2 id="ios-install-title" class="font-headline-sm text-on-surface">Install ASHA VoiceCare on iOS</h2>
+        <button id="ios-install-close-x" type="button" aria-label="Close install instructions" class="w-8 h-8 rounded-full bg-surface-container-high/60 flex items-center justify-center text-on-surface-variant">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+      <ol class="mt-3 space-y-2 text-sm text-on-surface-variant list-decimal list-inside">
+        <li>Tap the <strong class="font-semibold text-on-surface">Share</strong> button in Safari&apos;s toolbar.</li>
+        <li>Scroll down and tap <strong class="font-semibold text-on-surface">Add to Home Screen</strong>.</li>
+      </ol>
+      <button id="ios-install-close-btn" type="button" class="mt-5 w-full py-2.5 rounded-xl bg-primary-container text-on-primary text-sm font-semibold">
+        Got it
+      </button>
+    </div>
+  </div>
+
+  <!-- Stitch Navigation Drawer & 3-Step Voice Modal Interactions -->
+  <script>
+    function toggleNavMenu(open) {
+      const drawer = document.getElementById('nav-menu-drawer');
+      const panel = document.getElementById('nav-menu-panel');
+      if (!drawer || !panel) return;
+      if (open) {
+        drawer.classList.remove('pointer-events-none', 'opacity-0');
+        drawer.classList.add('opacity-100');
+        panel.classList.remove('translate-x-full');
+        panel.classList.add('translate-x-0');
+      } else {
+        drawer.classList.remove('opacity-100');
+        drawer.classList.add('opacity-0', 'pointer-events-none');
+        panel.classList.remove('translate-x-0');
+        panel.classList.add('translate-x-full');
+      }
+    }
+
+    const deptConfigs = {
+      maternal: {
+        badge: '🌱 Maternal & Child Care • ASHA Voice',
+        subtitle: 'Speak naturally in Telugu, Hindi, or English. Your notes will be captured seamlessly.',
+        readyText: 'Ready • Maternal & ANC Dictation',
+        underText: 'Auto-detecting as you speak • Telugu, Hindi, English'
+      },
+      immunization: {
+        badge: '🌱 Immunization Tracking • ASHA Voice',
+        subtitle: 'Speak naturally in Telugu, Hindi, or English. Your notes will be captured seamlessly.',
+        readyText: 'Ready • Infant & Vaccine Dictation',
+        underText: 'Auto-detecting as you speak • Telugu, Hindi, English'
+      },
+      supplies: {
+        badge: '🌱 Medicine Kit & Supplies • ASHA Voice',
+        subtitle: 'Speak naturally in Telugu, Hindi, or English. Your notes will be captured seamlessly.',
+        readyText: 'Ready • Kit Restock & Dispensing Log',
+        underText: 'Auto-detecting as you speak • Telugu, Hindi, English'
+      }
+    };
+
+    let currentDept = 'maternal';
+    let isListening = false;
+    let isPlayingPreview = false;
+
+    function openVoiceModalForDept(deptKey) {
+      const config = deptConfigs[deptKey] || deptConfigs.maternal;
+      currentDept = deptKey;
+
+      const modal = document.getElementById('voice-department-modal');
+      const sheet = document.getElementById('voice-modal-sheet');
+      const badge = document.getElementById('modal-badge-dept');
+      const subtitle = document.getElementById('modal-subtitle-text');
+      const status = document.getElementById('modal-status-text');
+      const underBadge = document.getElementById('modal-sub-badge-text');
+
+      if (badge) badge.textContent = config.badge;
+      if (subtitle) subtitle.textContent = config.subtitle;
+      if (status) status.textContent = config.readyText;
+      if (underBadge) underBadge.textContent = config.underText;
+
+      modal.classList.remove('pointer-events-none', 'opacity-0');
+      modal.classList.add('opacity-100');
+      sheet.classList.remove('translate-y-full');
+      sheet.classList.add('translate-y-0');
+    }
+
+    function closeVoiceModal() {
+      const modal = document.getElementById('voice-department-modal');
+      const sheet = document.getElementById('voice-modal-sheet');
+      if (isListening) {
+        isListening = false;
+        resetVoiceModal();
+      }
+      modal.classList.remove('opacity-100');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      sheet.classList.remove('translate-y-0');
+      sheet.classList.add('translate-y-full');
+    }
+
+    function showStep(stepName) {
+      const recordStep = document.getElementById('voice-step-record');
+      const processingStep = document.getElementById('voice-step-processing');
+      const reviewStep = document.getElementById('voice-step-review');
+
+      if (recordStep) recordStep.classList.add('hidden');
+      if (processingStep) processingStep.classList.add('hidden');
+      if (reviewStep) reviewStep.classList.add('hidden');
+
+      if (stepName === 'record' && recordStep) {
+        recordStep.classList.remove('hidden');
+      } else if (stepName === 'processing' && processingStep) {
+        processingStep.classList.remove('hidden');
+      } else if (stepName === 'review' && reviewStep) {
+        reviewStep.classList.remove('hidden');
+      }
+    }
+
+    function simulateProcessing() {
+      isListening = false;
+      showStep('processing');
+      setTimeout(() => {
+        showStep('review');
+      }, 1200);
+    }
+
+    function toggleListening() {
+      const micBtn = document.getElementById('voice-record-btn');
+      const statusText = document.getElementById('modal-status-text');
+      const statusDot = document.getElementById('status-indicator-dot');
+      const sublabel = document.getElementById('voice-btn-sublabel');
+      const titleText = document.getElementById('modal-title-text');
+      const r1 = document.getElementById('wave-ring-1');
+      const r2 = document.getElementById('wave-ring-2');
+      const r3 = document.getElementById('wave-ring-3');
+      const bars = document.querySelectorAll('.waveform-bar');
+
+      isListening = !isListening;
+
+      if (isListening) {
+        if (micBtn) micBtn.classList.add('scale-105', '!bg-error');
+        if (sublabel) sublabel.textContent = 'Tap to Finish';
+        if (titleText) titleText.textContent = 'Listening to ANC Note...';
+        if (statusText) statusText.textContent = 'Recording in Telugu & Hindi...';
+        if (statusDot) {
+          statusDot.classList.remove('bg-[#006b5f]');
+          statusDot.classList.add('bg-error', 'animate-ping');
+        }
+        if (r1) r1.classList.add('scale-115', '!bg-[#ffdad6]/60');
+        if (r2) r2.classList.add('scale-120', '!bg-[#ffdad6]/40');
+        if (r3) r3.classList.add('scale-125', '!bg-[#ffdad6]/25');
+        bars.forEach((b) => {
+          b.style.animationDuration = '0.45s';
+          b.classList.remove('bg-[#006b5f]');
+          b.classList.add('bg-error');
+        });
+      } else {
+        simulateProcessing();
+      }
+    }
+
+    function resetVoiceModal() {
+      isListening = false;
+      showStep('record');
+      const micBtn = document.getElementById('voice-record-btn');
+      const statusText = document.getElementById('modal-status-text');
+      const statusDot = document.getElementById('status-indicator-dot');
+      const sublabel = document.getElementById('voice-btn-sublabel');
+      const titleText = document.getElementById('modal-title-text');
+      const r1 = document.getElementById('wave-ring-1');
+      const r2 = document.getElementById('wave-ring-2');
+      const r3 = document.getElementById('wave-ring-3');
+      const bars = document.querySelectorAll('.waveform-bar');
+      const config = deptConfigs[currentDept] || deptConfigs.maternal;
+
+      if (micBtn) micBtn.classList.remove('scale-105', '!bg-error');
+      if (sublabel) sublabel.textContent = 'Tap to Talk';
+      if (titleText) titleText.textContent = 'Tap to Speak';
+      if (statusText) statusText.textContent = config.readyText;
+      if (statusDot) {
+        statusDot.classList.remove('bg-error', 'animate-ping');
+        statusDot.classList.add('bg-[#006b5f]');
+      }
+      if (r1) r1.classList.remove('scale-115', '!bg-[#ffdad6]/60');
+      if (r2) r2.classList.remove('scale-120', '!bg-[#ffdad6]/40');
+      if (r3) r3.classList.remove('scale-125', '!bg-[#ffdad6]/25');
+      bars.forEach((b) => {
+        b.style.animationDuration = '1.2s';
+        b.classList.remove('bg-error');
+        b.classList.add('bg-[#006b5f]');
+      });
+    }
+
+    function reRecordVoice() {
+      resetVoiceModal();
+      toggleListening();
+    }
+
+    function toggleAudioPlayback() {
+      isPlayingPreview = !isPlayingPreview;
+      const playIcon = document.getElementById('play-icon');
+      const label = document.getElementById('play-status-label');
+      if (isPlayingPreview) {
+        if (playIcon) playIcon.textContent = 'pause';
+        if (label) label.textContent = 'Playing Telugu & Hindi summary audio...';
+      } else {
+        if (playIcon) playIcon.textContent = 'play_arrow';
+        if (label) label.textContent = 'Spoken Read-back preview (Telugu & Hindi)';
+      }
+    }
+
+    function saveAndSyncRecord() {
+      const btn = document.getElementById('btn-confirm-record');
+      if (btn) {
+        btn.replaceChildren();
+        const icon = document.createElement('span');
+        icon.className = 'material-symbols-outlined text-[20px] animate-spin';
+        icon.textContent = 'sync';
+        const label = document.createElement('span');
+        label.textContent = 'Syncing with Anmol Registry...';
+        btn.appendChild(icon);
+        btn.appendChild(label);
+      }
+      setTimeout(() => {
+        if (btn) {
+          btn.replaceChildren();
+          const icon = document.createElement('span');
+          icon.className = 'material-symbols-outlined text-[20px]';
+          icon.textContent = 'cloud_upload';
+          const label = document.createElement('span');
+          label.textContent = 'Update Patient Record';
+          btn.appendChild(icon);
+          btn.appendChild(label);
+        }
+        closeVoiceModal();
+        resetVoiceModal();
+        const toast = document.getElementById('sync-success-toast');
+        if (toast) {
+          toast.classList.remove('hidden');
+          setTimeout(() => {
+            toast.classList.add('hidden');
+          }, 4500);
+        }
+        const visitBadge = document.querySelector('section.pt-4 span.text-secondary.leading-none');
+        if (visitBadge) {
+          visitBadge.textContent = '7/8';
+        }
+      }, 900);
+    }
+
+    function dismissToast() {
+      const toast = document.getElementById('sync-success-toast');
+      if (toast) toast.classList.add('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('article[data-dept]').forEach((card) => {
+        card.addEventListener('click', () => {
+          const dept = card.getAttribute('data-dept');
+          openVoiceModalForDept(dept);
+        });
+      });
+
+      document.querySelectorAll('.dept-btn[data-dept]').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const dept = btn.getAttribute('data-dept');
+          openVoiceModalForDept(dept);
+        });
+      });
+    });
+  </script>
+
+  <!-- LiveKit WebRTC UMD Client + SwasthyaVaani Voice Session Logic -->
+  <script src="https://cdn.jsdelivr.net/npm/livekit-client@2.24.1/dist/livekit-client.umd.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "SwasthyaVaani",
+  "description": "Hands-free AI voice field register PWA for ASHA community health workers.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
